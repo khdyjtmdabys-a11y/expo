@@ -1,0 +1,22 @@
+import Chargily from '@chargily/chargily-pay';
+
+const chargily = new Chargily({
+  api_key: process.env.CHARGILY_API_KEY=test_sk_7andXUFNXxy9dklqfZIwgI8IIsjb0GJCRh9PH2lX,
+  mode: 'test',
+});
+
+export async function createCheckout() {
+  const checkout = await chargily.createCheckout({
+    items: [
+      {
+        price: 100,
+        quantity: 1,
+        description: 'MindCare Subscription',
+      },
+    ],
+    success_url: 'https://yourapp.com/success',
+    failure_url: 'https://yourapp.com/failure',
+  });
+
+  return checkout;
+}
